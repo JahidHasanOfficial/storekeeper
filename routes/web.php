@@ -6,10 +6,10 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SaleHistoryController;
 
 
-Route::get('/', function () {
-    return view('products.index');
-});
-
+// Route::get('/', function () {
+//     return view('products.index');
+// });
+Route::get('/',[ProductController::class, 'index']);
 
 // Products Route
 Route::get('/products', [ProductController::class,'index'])->name('products');

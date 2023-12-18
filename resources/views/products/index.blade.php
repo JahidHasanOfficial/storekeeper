@@ -38,32 +38,38 @@
     @endif
 
     <h2 class="mb-3 mt-5">Product List</h2>
-    <table class="table table-bordered table-striped text-center">
+    <table class="table table-bordered table-striped ">
         <thead>
             <tr>
-                <th scope="col">Serial No</th>
-                <th scope="col">Product Name</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Product Price</th>
-                <th scope="col">Actions</th>
+                <th>Serial No</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Product Price</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
+          
           @foreach($products as $product)
             <tr>
-                <th scope="row">{{ $product->id }}</th>
+                <td>{{ $loop->index+1 }}</td>
                 <td>{{ $product->name }}</td>
                 <td>{{ $product->quantity }}</td>
                 <td>{{ $product->price }}</td>
-                <td>
-                    <a class="btn btn-success" href="{{ route('products.sell',$product->id) }}">Sell</a>
-                    <a class="btn btn-warning" href="{{ route('products.edit',$product->id) }}">Edit</a>
-                    <form action="{{ route('product.destroy',$product->id) }}" method="POST">
+                <td class="text-right">
+                  <div class="btn-group" style="display: inline;">
+                      <a class="btn btn-success" href="{{ route('products.sell',$product->id) }}">Sell</a>
+                      <a class="btn btn-warning" href="{{ route('products.edit',$product->id) }}">Edit</a>
+                  </div>
+                  
+                  <form action="{{ route('product.destroy',$product->id) }}" method="POST" style="display: inline;">
                       @csrf
                       @method('DELETE')
                       <button type="submit" onclick="return confirm('Are you sure you want to delete this product?')" class="btn btn-danger">Delete</button>
-                    </form>
-                </td>
+                  </form>
+              </td>
+              
+              
             </tr>
           @endforeach
         </tbody>

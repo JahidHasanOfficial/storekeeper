@@ -9,7 +9,7 @@ class ProductController extends Controller
 {
     public function index() {
         $products = DB::table('products')->get();
-        return view('products.index',compact('products'));
+        return view('products.index', compact('products'));
     }
 
     public function create() {
